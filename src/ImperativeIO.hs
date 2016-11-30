@@ -9,6 +9,9 @@ data Chunk = Chunk { chunk :: String }
            | LineEnd {chunk :: String, remainder :: String } -- when chunk contains an endline char
     deriving (Show)
 
+--  print $ parseChunk (B8.pack "AAA\nBB")
+--  print $ parseChunk (B8.pack "CCC")
+parseChunk :: B8.ByteString -> Chunk
 parseChunk chunk =
   if rightS == B8.pack ""
     then Chunk (toS leftS)
